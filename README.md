@@ -44,7 +44,7 @@ The official Bitpanda GE API documentation can be found [here](https://developer
 API Key is only needed for the secured API calls
 
 ```go
-import "gitlab.com/IoTMOD/gobitpanda"
+import "gitlab.com/iotmod/gobitpanda"
 
 c, err := gobitpanda.NewClient(gobitpanda.APIBase, YourAPIKey)
 ```
