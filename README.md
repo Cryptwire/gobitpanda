@@ -69,7 +69,7 @@ newDeposit, err := c.NewAccountDepositAddress(&gobitpanda.CurrencyCode{Code: gob
 
 ### Withdraw from an account (only crypto currency allowed) (secured)
 ```go
-withdraw, err := c.Withdrawl(&gobitpanda.Withdraw{Currency: gobitpanda.CurrencyMIOTA, Amount: "33", Recipient: &gobitpanda.Recipient{Address: "999999999...", DestinationTag: ""}})
+withdraw, err := c.Withdrawl(&gobitpanda.Withdraw{Currency: gobitpanda.CurrencyMIOTA, Amount: "33", Recipient: gobitpanda.Recipient{Address: "999999999...", DestinationTag: ""}})
 ```
 
 ### Get fee details for an account (secured)
