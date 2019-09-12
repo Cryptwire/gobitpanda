@@ -177,7 +177,29 @@ type (
 	// Currency struct
 	Currency struct {
 		Code      string `json:"code"`
-		Precision int    `json:"precision"`
+		Precision int    `json:"precision,omitempty"`
+	}
+
+	// CurrencyCode struct
+	CurrencyCode struct {
+		Code string `json:"code"`
+	}
+
+	// DepositReturn struct
+	DepositReturn struct {
+		Address        string `json:"address"`
+		DestinationTag string `json:"destinationTag"`
+		Enabled        bool   `json:"enabled"`
+		CanCreateMore  bool   `json:"canCreateMore"`
+		SmartContract  bool   `json:"smartContract"`
+	}
+
+	// DepositWithdrawReturn struct
+	DepositWithdrawReturn struct {
+		Amount         string `json:"amount"`
+		Recipient      string `json:"recipient"`
+		DestinationTag string `json:"destinationTag"`
+		Fee            string `json:"fee"`
 	}
 
 	// ErrorResponse struct
@@ -275,6 +297,12 @@ type (
 		Trades []TradeHistoryEntry `json:"trades"`
 	}
 
+	// Recipient struct
+	Recipient struct {
+		Address        string `json:"address"`
+		DestinationTag string `json:"destination_tag"`
+	}
+
 	// Time struct
 	Time struct {
 		Iso         string `json:"iso"` // RFC3339
@@ -324,5 +352,12 @@ type (
 		Price          string `json:"price"`
 		Amount         string `json:"amount"`
 		NumberOfOrders uint   `json:"number_of_orders"`
+	}
+
+	//Withdraw struct
+	Withdraw struct {
+		Currency  string    `json:"currency"`
+		Amount    string    `json:"amount"`
+		Recipient Recipient `json:"recipient"`
 	}
 )

@@ -8,6 +8,9 @@ The official Bitpanda GE API documentation can be found [here](https://developer
 
 ### Account (secured)
 * GET    /account/balances
+* GET    /deposit/crypto/{currency_code}
+* POST   /account/deposit/crypto
+* POST   /account/withdraw/crypto
 * GET    /account/fees
 * GET    /account/orders
 * POST   /account/orders
@@ -52,6 +55,21 @@ c, err := gobitpanda.NewClient(gobitpanda.APIBase, YourAPIKey)
 ### Get balances of an account (secured)
 ```go
 account, err := c.GetAccountBalances()
+```
+
+### Get deposit address for an account by currency code (only crypto currency allowed) (secured)
+```go
+deposit, err := c.GetAccountDepositAddress(gobitpanda.CurrencyMIOTA)
+```
+
+### Create a deposit address for an account by currency code (only crypto currency allowed) (secured)
+```go
+newDeposit, err := c.NewAccountDepositAddress(&gobitpanda.CurrencyCode{Code: gobitpanda.CurrencyMIOTA}) 
+```
+
+### Withdraw from an account (only crypto currency allowed) (secured)
+```go
+withdraw, err := c.Withdrawl(&gobitpanda.Withdraw{Currency: gobitpanda.CurrencyMIOTA, Amount: "33", Recipient: &gobitpanda.Recipient{Address: "999999999...", DestinationTag: ""}})
 ```
 
 ### Get fee details for an account (secured)
