@@ -8,6 +8,9 @@ The official Bitpanda GE API documentation can be found [here](https://developer
 
 ### Account (secured)
 * GET    /account/balances
+* GET    /deposit/crypto/{currency_code}
+* POST   /account/deposit/crypto
+* POST   /account/withdraw/crypto
 * GET    /account/fees
 * GET    /account/orders
 * POST   /account/orders
