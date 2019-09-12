@@ -7,6 +7,60 @@ import (
 	"time"
 )
 
+// NewAccountDepositAddress creates a new deposit address for the given currency code.
+func (c *Client) NewAccountDepositAddress(currency *CurrencyCode) (*DepositWithdrawReturn, error) {
+	if currency.Code == "" {
+		return nil, errors.New("No currency code provided")
+	}
+
+	if currency.Code == CurrencyEUR {
+		return nil, errors.New("Can't get a deposit address for FIAT currency codes")
+	}
+
+	deposit := &DepositWithdrawReturn{}
+
+	req, err := c.NewRequest("POST", fmt.Sprintf("%s%s", c.APIBase, "/v1/account/deposit/crypto"), currency)
+	if err != nil {
+		return nil, err
+	}
+
+	err = c.SendWithAuth(req, deposit)
+	if err != nil {
+		return nil, err
+	}
+
+	return deposit, nil
+}
+
+// Withdrawl initiates a withdrawal.
+func (c *Client) Withdrawl(w *Withdraw) (*DepositWithdrawReturn, error) {
+	if w == nil {
+		return nil, errors.New("No withdraw info provided")
+	}
+
+	if w.Currency == "" {
+		return nil, errors.New("No currency code provided")
+	}
+
+	if w.Currency == CurrencyEUR {
+		return nil, errors.New("Can't withdraw FIAT currency")
+	}
+
+	withdraw := &DepositWithdrawReturn{}
+
+	req, err := c.NewRequest("POST", fmt.Sprintf("%s%s", c.APIBase, "/v1/account/withdraw/crypto"), w)
+	if err != nil {
+		return nil, err
+	}
+
+	err = c.SendWithAuth(req, withdraw)
+	if err != nil {
+		return nil, err
+	}
+
+	return withdraw, nil
+}
+
 // GetAccountBalances get the balance details for an account.
 func (c *Client) GetAccountBalances() (*Account, error) {
 	acc := &Account{}
@@ -21,6 +75,31 @@ func (c *Client) GetAccountBalances() (*Account, error) {
 	}
 
 	return acc, nil
+}
+
+// GetAccountDepositAddress get a deposit address for the given crypto currency code
+func (c *Client) GetAccountDepositAddress(currency string) (*DepositReturn, error) {
+	if currency == "" {
+		return nil, errors.New("No currency code provided")
+	}
+
+	if currency == CurrencyEUR {
+		return nil, errors.New("Can't get a deposit address for FIAT currency codes")
+	}
+
+	deposit := &DepositReturn{}
+
+	req, err := c.NewRequest("GET", fmt.Sprintf("%s%s%s", c.APIBase, "/v1/account/deposit/crypto/", currency), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = c.SendWithAuth(req, deposit)
+	if err != nil {
+		return nil, err
+	}
+
+	return deposit, nil
 }
 
 // GetAccountFees gets the fee details for an account.

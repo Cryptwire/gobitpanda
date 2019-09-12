@@ -54,6 +54,21 @@ c, err := gobitpanda.NewClient(gobitpanda.APIBase, YourAPIKey)
 account, err := c.GetAccountBalances()
 ```
 
+### Get deposit address for an account by currency code (only crypto currency allowed) (secured)
+```go
+deposit, err := c.GetAccountDepositAddress(gobitpanda.CurrencyMIOTA)
+```
+
+### Create a deposit address for an account by currency code (only crypto currency allowed) (secured)
+```go
+newDeposit, err := c.NewAccountDepositAddress(&gobitpanda.CurrencyCode{Code: gobitpanda.CurrencyMIOTA}) 
+```
+
+### Withdraw from an account (only crypto currency allowed) (secured)
+```go
+withdraw, err := c.Withdrawl(&gobitpanda.Withdraw{Currency: gobitpanda.CurrencyMIOTA, Amount: "33", Recipient: &gobitpanda.Recipient{Address: "999999999...", DestinationTag: ""}})
+```
+
 ### Get fee details for an account (secured)
 ```go
 fees, err := c.GetAccountFees()
