@@ -8,7 +8,7 @@ import (
 )
 
 // NewAccountDepositAddress creates a new deposit address for the given currency code.
-func (c *Client) NewAccountDepositAddress(currency *CurrencyCode) (*DepositWithdrawReturn, error) {
+func (c *Client) NewAccountDepositAddress(currency *CurrencyCode) (*DepositReturn, error) {
 	if currency.Code == "" {
 		return nil, errors.New("No currency code provided")
 	}
@@ -17,7 +17,7 @@ func (c *Client) NewAccountDepositAddress(currency *CurrencyCode) (*DepositWithd
 		return nil, errors.New("Can't get a deposit address for FIAT currency codes")
 	}
 
-	deposit := &DepositWithdrawReturn{}
+	deposit := &DepositReturn{}
 
 	req, err := c.NewRequest("POST", fmt.Sprintf("%s%s", c.APIBase, "/v1/account/deposit/crypto"), currency)
 	if err != nil {
@@ -33,7 +33,7 @@ func (c *Client) NewAccountDepositAddress(currency *CurrencyCode) (*DepositWithd
 }
 
 // Withdrawl initiates a withdrawal.
-func (c *Client) Withdrawl(w *Withdraw) (*DepositWithdrawReturn, error) {
+func (c *Client) Withdrawl(w *Withdraw) (*WithdrawReturn, error) {
 	if w == nil {
 		return nil, errors.New("No withdraw info provided")
 	}
@@ -46,7 +46,7 @@ func (c *Client) Withdrawl(w *Withdraw) (*DepositWithdrawReturn, error) {
 		return nil, errors.New("Can't withdraw FIAT currency")
 	}
 
-	withdraw := &DepositWithdrawReturn{}
+	withdraw := &WithdrawReturn{}
 
 	req, err := c.NewRequest("POST", fmt.Sprintf("%s%s", c.APIBase, "/v1/account/withdraw/crypto"), w)
 	if err != nil {
