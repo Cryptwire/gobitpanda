@@ -191,11 +191,11 @@ type (
 		DestinationTag string `json:"destinationTag"`
 		Enabled        bool   `json:"enabled"`
 		CanCreateMore  bool   `json:"canCreateMore"`
-		SmartContract  bool   `json:"smartContract"`
+		SmartContract  bool   `json:"is_smart_contract"`
 	}
 
 	// DepositWithdrawReturn struct
-	DepositWithdrawReturn struct {
+	WithdrawReturn struct {
 		Amount         string `json:"amount"`
 		Recipient      string `json:"recipient"`
 		DestinationTag string `json:"destinationTag"`
