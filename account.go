@@ -32,6 +32,23 @@ func (c *Client) NewAccountDepositAddress(currency *CurrencyCode) (*DepositRetur
 	return deposit, nil
 }
 
+// NewAccountFIATDeposit returns deposit information for sepa payments (EUR)
+func (c *Client) NewAccountFIATDeposit() (*FiatDepositReturn, error) {
+	deposit := &FiatDepositReturn{}
+
+	req, err := c.NewRequest("GET", fmt.Sprintf("%s%s", c.APIBase, "/v1/account/deposit/fiat/EUR"), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = c.SendWithAuth(req, deposit)
+	if err != nil {
+		return nil, err
+	}
+
+	return deposit, nil
+}
+
 // Withdrawl initiates a withdrawal.
 func (c *Client) Withdrawl(w *Withdraw) (*WithdrawReturn, error) {
 	if w == nil {

@@ -67,6 +67,11 @@ deposit, err := c.GetAccountDepositAddress(gobitpanda.CurrencyMIOTA)
 newDeposit, err := c.NewAccountDepositAddress(&gobitpanda.CurrencyCode{Code: gobitpanda.CurrencyMIOTA}) 
 ```
 
+### Returns deposit information for sepa payments (secured)
+```go
+newFiatDeposit, err := NewAccountFIATDeposit()
+```
+
 ### Withdraw from an account (only crypto currency allowed) (secured)
 ```go
 withdraw, err := c.Withdrawl(&gobitpanda.Withdraw{Currency: gobitpanda.CurrencyMIOTA, Amount: "33", Recipient: gobitpanda.Recipient{Address: "999999999...", DestinationTag: ""}})
