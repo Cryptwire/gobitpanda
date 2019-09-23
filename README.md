@@ -1,3 +1,5 @@
+<p align="center"><img src="https://gitlab.com/iotmod/gobitpanda/raw/master/logo.svg" width="360"></p>
+
 # Go client for Bitpanda Global Exchange REST API
 This is an unofficial Go client for the Bitpanda Global Exchange.
 The official Bitpanda GE API documentation can be found [here](https://developers.bitpanda.com/exchange/)
