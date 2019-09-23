@@ -190,11 +190,11 @@ type (
 		Address        string `json:"address"`
 		DestinationTag string `json:"destinationTag"`
 		Enabled        bool   `json:"enabled"`
-		CanCreateMore  bool   `json:"canCreateMore"`
+		CanCreateMore  bool   `json:"can_create_more"`
 		SmartContract  bool   `json:"is_smart_contract"`
 	}
 
-	// DepositWithdrawReturn struct
+	// WithdrawReturn struct
 	WithdrawReturn struct {
 		Amount         string `json:"amount"`
 		Recipient      string `json:"recipient"`
