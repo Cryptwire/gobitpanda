@@ -233,6 +233,17 @@ type (
 		TakerFee   string `json:"taker_fee"`
 	}
 
+	// FiatDepositReturn struct
+	FiatDepositReturn struct {
+		IBAN                string `json:"iban"`
+		BIC                 string `json:"bic"`
+		Bank                string `json:"bank"`
+		Address             string `json:"address"`
+		Receiver            string `json:"receiver"`
+		ReceiverAddress     string `json:"receiver_address"`
+		UniquePaymentNumber string `json:"unique_payment_number"`
+	}
+
 	// Granularity struct
 	Granularity struct {
 		Unit   string `json:"unit"`
