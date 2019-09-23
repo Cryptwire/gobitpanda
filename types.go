@@ -182,7 +182,7 @@ type (
 
 	// CurrencyCode struct
 	CurrencyCode struct {
-		Code string `json:"code"`
+		Code string `json:"currency"`
 	}
 
 	// DepositReturn struct
