@@ -69,7 +69,7 @@ newDeposit, err := c.NewAccountDepositAddress(&gobitpanda.CurrencyCode{Code: gob
 
 ### Returns deposit information for sepa payments (secured)
 ```go
-newFiatDeposit, err := NewAccountFIATDeposit()
+newFiatDeposit, err := c.NewAccountFIATDeposit()
 ```
 
 ### Withdraw from an account (only crypto currency allowed) (secured)
