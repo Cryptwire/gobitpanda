@@ -105,6 +105,18 @@ type (
 		Balances  []Balance `json:"balances"`
 	}
 
+	// AccountFees struct
+	AccountFees struct {
+		AccountID            string    `json:"account_id"`
+		RunningTradingVolume string    `json:"running_trading_volume"`
+		FeeGroupID           string    `json:"fee_group_id"`
+		FeeTiers             []FeeTier `json:"fee_tiers"`
+		ActiveFeeTier        FeeTier   `json:"active_fee_tier"`
+		CollectFeesInBest    bool      `json:"collect_fees_in_best"`
+		FeeDiscountRate      string    `json:"fee_discount_rate"`
+		MinimumPriceValue    string    `json:"minimum_price_value"`
+	}
+
 	// Ask struct
 	Ask struct {
 		Value Value `json:"value"`
@@ -220,9 +232,16 @@ type (
 
 	// FeeGroup struct
 	FeeGroup struct {
-		FeeGroupID  string    `json:"fee_group_id"`
-		DisplayText string    `json:"display_text,omitempty"`
-		FeeTiers    []FeeTier `json:"fee_tiers"`
+		FeeGroupID        string    `json:"fee_group_id"`
+		DisplayText       string    `json:"display_text,omitempty"`
+		FeeTiers          []FeeTier `json:"fee_tiers"`
+		FeeDiscountRate   string    `json:"fee_discount_rate"`
+		MinimumPriceValue string    `json:"minimum_price_value"`
+	}
+
+	// FeeMode toggle to enable or disable fee collection with BEST
+	FeeMode struct {
+		CollectFeesInBest bool `json:"collect_fees_in_best"`
 	}
 
 	// FeeTier struct

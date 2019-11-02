@@ -120,10 +120,26 @@ func (c *Client) GetAccountDepositAddress(currency string) (*DepositReturn, erro
 }
 
 // GetAccountFees gets the fee details for an account.
-func (c *Client) GetAccountFees() (*FeeGroup, error) {
-	fees := &FeeGroup{}
+func (c *Client) GetAccountFees() (*AccountFees, error) {
+	fees := &AccountFees{}
 
 	req, err := c.NewRequest("GET", fmt.Sprintf("%s%s", c.APIBase, "/v1/account/fees"), nil)
+	if err != nil {
+		return fees, err
+	}
+
+	if err = c.SendWithAuth(req, fees); err != nil {
+		return fees, err
+	}
+
+	return fees, nil
+}
+
+// SetAccountFeeMode updates the fee toggle to enable or disable fee collection with BEST
+func (c *Client) SetAccountFeeMode(enableBESTMode bool) (*AccountFees, error) {
+	fees := &AccountFees{}
+
+	req, err := c.NewRequest("POST", fmt.Sprintf("%s%s", c.APIBase, "/v1/account/fees"), &FeeMode{CollectFeesInBest: enableBESTMode})
 	if err != nil {
 		return fees, err
 	}
