@@ -92,6 +92,11 @@ withdraw, err := c.Withdrawl(&gobitpanda.Withdraw{Currency: gobitpanda.CurrencyM
 fees, err := c.GetAccountFees()
 ```
 
+### Set account fee mode (pay fees with BEST)
+```go 
+accountFees, err := c.SetAccountFeeMode(true)
+```
+
 ### Get orders of an account (secured)
 ```go
 now := time.Now()
@@ -183,7 +188,7 @@ marketTicks, err := c.GetMarketTicker()
 
 ### Get statistics on a single market
 ```go
-maketTick, err := c.GetMarketTickerByCode(gobitpanda.InstrumentMIOTAEUR)
+marketTick, err := c.GetMarketTickerByCode(gobitpanda.InstrumentMIOTAEUR)
 ```
 
 ### Get price-ticks information for last 4 hours when no query parameters are specified.
