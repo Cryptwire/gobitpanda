@@ -279,6 +279,23 @@ type (
 		MinSize         string   `json:"min_size"`
 	}
 
+	// MarketTick struct
+	MarketTick struct {
+		InstrumentCode        string `json:"instrument_code"`
+		Sequence              int    `json:"sequence"`
+		State                 string `json:"state"`
+		IsFrozen              int    `json:"is_frozen"`
+		QuoteVolume           string `json:"quote_volume"`
+		BaseVolume            string `json:"base_volume"`
+		LastPrice             string `json:"last_price"`
+		BestBid               string `json:"best_bid"`
+		BestAsk               string `json:"best_ask"`
+		PriceChange           string `json:"price_change"`
+		PriceChangePercentage string `json:"price_change_percentage"`
+		High                  string `json:"high"`
+		Low                   string `json:"low"`
+	}
+
 	// Order struct
 	Order struct {
 		OrderID         string    `json:"order_id"`

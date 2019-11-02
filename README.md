@@ -40,6 +40,10 @@ The official Bitpanda GE API documentation can be found [here](https://developer
 ### Order-book
 * GET /order-book/{instrument_code}
 
+### Market-ticker
+* GET /market-ticker
+* GET /market-ticker/{instrument_code}
+
 ### Time
 * GET /time
 
@@ -167,6 +171,16 @@ time, err := c.GetTime()
 ### Get order book
 ```go
 orderBook, err := c.GetOrderBook(gobitpanda.InstrumentMIOTAEUR, gobitpanda.LevelTwo)
+```
+
+### Get market statistics for the last 24 hours
+```go
+marketTicks, err := c.GetMarketTicker()
+```
+
+### Get statistics on a single market
+```go
+maketTick, err := c.GetMarketTickerByCode(gobitpanda.InstrumentMIOTAEUR)
 ```
 
 # Bugs and feature requests
