@@ -105,6 +105,18 @@ type (
 		Balances  []Balance `json:"balances"`
 	}
 
+	// AccountFees struct
+	AccountFees struct {
+		AccountID            string    `json:"account_id"`
+		RunningTradingVolume string    `json:"running_trading_volume"`
+		FeeGroupID           string    `json:"fee_group_id"`
+		FeeTiers             []FeeTier `json:"fee_tiers"`
+		ActiveFeeTier        FeeTier   `json:"active_fee_tier"`
+		CollectFeesInBest    bool      `json:"collect_fees_in_best"`
+		FeeDiscountRate      string    `json:"fee_discount_rate"`
+		MinimumPriceValue    string    `json:"minimum_price_value"`
+	}
+
 	// Ask struct
 	Ask struct {
 		Value Value `json:"value"`
@@ -220,9 +232,16 @@ type (
 
 	// FeeGroup struct
 	FeeGroup struct {
-		FeeGroupID  string    `json:"fee_group_id"`
-		DisplayText string    `json:"display_text,omitempty"`
-		FeeTiers    []FeeTier `json:"fee_tiers"`
+		FeeGroupID        string    `json:"fee_group_id"`
+		DisplayText       string    `json:"display_text,omitempty"`
+		FeeTiers          []FeeTier `json:"fee_tiers"`
+		FeeDiscountRate   string    `json:"fee_discount_rate"`
+		MinimumPriceValue string    `json:"minimum_price_value"`
+	}
+
+	// FeeMode toggle to enable or disable fee collection with BEST
+	FeeMode struct {
+		CollectFeesInBest bool `json:"collect_fees_in_best"`
 	}
 
 	// FeeTier struct
@@ -258,6 +277,23 @@ type (
 		AmountPrecision uint     `json:"amount_precision"`
 		MarketPrecision uint     `json:"market_precision"`
 		MinSize         string   `json:"min_size"`
+	}
+
+	// MarketTick struct
+	MarketTick struct {
+		InstrumentCode        string `json:"instrument_code"`
+		Sequence              int    `json:"sequence"`
+		State                 string `json:"state"`
+		IsFrozen              int    `json:"is_frozen"`
+		QuoteVolume           string `json:"quote_volume"`
+		BaseVolume            string `json:"base_volume"`
+		LastPrice             string `json:"last_price"`
+		BestBid               string `json:"best_bid"`
+		BestAsk               string `json:"best_ask"`
+		PriceChange           string `json:"price_change"`
+		PriceChangePercentage string `json:"price_change_percentage"`
+		High                  string `json:"high"`
+		Low                   string `json:"low"`
 	}
 
 	// Order struct
@@ -306,6 +342,18 @@ type (
 	OrderHistoryEntry struct {
 		Order  Order               `json:"order"`
 		Trades []TradeHistoryEntry `json:"trades"`
+	}
+
+	// PriceTick struct
+	PriceTick struct {
+		InstrumentCode string    `json:"instrument_code"`
+		Price          string    `json:"price"`
+		Amount         string    `json:"amount"`
+		Volume         string    `json:"volume"`
+		Sequence       int       `json:"sequence"`
+		TakerSide      string    `json:"taker_side"`
+		Time           time.Time `json:"time"`
+		TradeTimestamp int64     `json:"trade_timestamp"`
 	}
 
 	// Recipient struct

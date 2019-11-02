@@ -40,6 +40,13 @@ The official Bitpanda GE API documentation can be found [here](https://developer
 ### Order-book
 * GET /order-book/{instrument_code}
 
+### Market-ticker
+* GET /market-ticker
+* GET /market-ticker/{instrument_code}
+
+### Price-ticks
+* GET /price-ticks/{instrument_code}
+
 ### Time
 * GET /time
 
@@ -83,6 +90,11 @@ withdraw, err := c.Withdrawl(&gobitpanda.Withdraw{Currency: gobitpanda.CurrencyM
 ### Get fee details for an account (secured)
 ```go
 fees, err := c.GetAccountFees()
+```
+
+### Set account fee mode (pay fees with BEST)
+```go 
+accountFees, err := c.SetAccountFeeMode(true)
 ```
 
 ### Get orders of an account (secured)
@@ -167,6 +179,23 @@ time, err := c.GetTime()
 ### Get order book
 ```go
 orderBook, err := c.GetOrderBook(gobitpanda.InstrumentMIOTAEUR, gobitpanda.LevelTwo)
+```
+
+### Get market statistics for the last 24 hours
+```go
+marketTicks, err := c.GetMarketTicker()
+```
+
+### Get statistics on a single market
+```go
+marketTick, err := c.GetMarketTickerByCode(gobitpanda.InstrumentMIOTAEUR)
+```
+
+### Get price-ticks information for last 4 hours when no query parameters are specified.
+
+```go 
+now := time.Now()
+priceTicks, err := c.GetPriceTicksByCode(gobitpanda.InstrumentMIOTAEUR, now.AddDate(0, 0, -1), now)
 ```
 
 # Bugs and feature requests
