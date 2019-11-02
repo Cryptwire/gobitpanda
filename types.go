@@ -344,6 +344,18 @@ type (
 		Trades []TradeHistoryEntry `json:"trades"`
 	}
 
+	// PriceTick struct
+	PriceTick struct {
+		InstrumentCode string    `json:"instrument_code"`
+		Price          string    `json:"price"`
+		Amount         string    `json:"amount"`
+		Volume         string    `json:"volume"`
+		Sequence       int       `json:"sequence"`
+		TakerSide      string    `json:"taker_side"`
+		Time           time.Time `json:"time"`
+		TradeTimestamp int64     `json:"trade_timestamp"`
+	}
+
 	// Recipient struct
 	Recipient struct {
 		Address        string `json:"address"`

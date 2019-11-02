@@ -44,6 +44,9 @@ The official Bitpanda GE API documentation can be found [here](https://developer
 * GET /market-ticker
 * GET /market-ticker/{instrument_code}
 
+### Price-ticks
+* GET /price-ticks/{instrument_code}
+
 ### Time
 * GET /time
 
@@ -181,6 +184,13 @@ marketTicks, err := c.GetMarketTicker()
 ### Get statistics on a single market
 ```go
 maketTick, err := c.GetMarketTickerByCode(gobitpanda.InstrumentMIOTAEUR)
+```
+
+### Get price-ticks information for last 4 hours when no query parameters are specified.
+
+```go 
+now := time.Now()
+priceTicks, err := c.GetPriceTicksByCode(gobitpanda.InstrumentMIOTAEUR, now.AddDate(0, 0, -1), now)
 ```
 
 # Bugs and feature requests
