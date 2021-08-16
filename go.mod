@@ -1,3 +1,3 @@
-module gitlab.com/iotmod/gobitpanda
+module github.com/cryptwire/gobitpanda
 
 go 1.12
